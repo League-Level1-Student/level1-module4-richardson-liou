@@ -35,6 +35,7 @@ public class Calculator implements ActionListener{
 		panel.add(subs);
 		panel.add(div);
 		panel.add(mult);
+		panel.add(answer);
 		frame.add(panel);
 		
 		
@@ -51,18 +52,28 @@ public class Calculator implements ActionListener{
 	public void add() {
 		int number1 = Integer.parseInt(num1.getText());
 		int number2 = Integer.parseInt(num2.getText());
-		answer.setText( number1+ number2+"");
-		frame.add(answer);
+		answer.setText(number1+ number2+"");
 		frame.pack();
 	}
 	public void subtract() {
+		int number1 = Integer.parseInt(num1.getText());
+		int number2 = Integer.parseInt(num2.getText());
+		answer.setText(number1 - number2+"");
+		frame.pack();
 		
 	}
 	public void multiply() {
+		int number1 = Integer.parseInt(num1.getText());
+		int number2 = Integer.parseInt(num2.getText());
+		answer.setText(number1* number2+"");
+		frame.pack();
 		
 	}
 	public void divide() {
-		
+		int number1 = Integer.parseInt(num1.getText());
+		int number2 = Integer.parseInt(num2.getText());
+		answer.setText(number1/number2+"");
+		frame.pack();
 	}
 
 	@Override
