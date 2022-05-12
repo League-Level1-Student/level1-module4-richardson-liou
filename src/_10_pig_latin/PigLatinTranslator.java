@@ -14,18 +14,21 @@ public class PigLatinTranslator implements ActionListener {
 	JPanel panel = new JPanel();
 	JTextField english = new JTextField();
 	JTextField piglatin = new JTextField();
-	JButton eng = new JButton();
-	JButton pig = new JButton();
+	JButton eng = new JButton(">>");
+	JButton pig = new JButton("<<");
+	int pos;
+	char ch;
 	
-	public PigLatinTranslator() {
-		frame.setPreferredSize(new Dimension(500,70));
+	public void run(){
+		frame.setPreferredSize(new Dimension(600,70));
 		english.setPreferredSize(new Dimension(200,50));
-		piglatin.setPreferredSize(new Dimension(200,70));
+		piglatin.setPreferredSize(new Dimension(200,50));
 		
-		panel.add(eng);
 		panel.add(english);
+		panel.add(eng);
 		panel.add(pig);
-		panel.add(panel);
+		panel.add(piglatin);
+		frame.add(panel);
 		
 		frame.setVisible(true);
 		frame.pack();
@@ -38,10 +41,42 @@ public class PigLatinTranslator implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		JButton buttonPressed = (JButton) e.getSource();
 		if(buttonPressed == eng) {
-			
+			translateToPig();
 		}
 		else if(buttonPressed == pig) {
-			
+			System.out.println("op");
 		}
+		
+	}
+	public void translateToPig() {
+		String word = english.getText();
+		for (int i = 0; i<word.length(); i++) {
+			ch= word.charAt(i);
+			if (isVowel(ch)) {
+				pos = i;
+				break;
+			}
+		}
+		if(pos == 0) {
+			piglatin.setText(word +"yay");
+		}
+		else {
+			String a = word.substring(pos); 
+            String b = word.substring(0, pos); 
+            piglatin.setText(a+"-"+b+"ay");
+        }
+    }
+
+	public void translateToEng() {
+		String word = piglatin.getText();
+		
+	}
+	
+	
+	private boolean isVowel(char character) {
+		if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' || ch == 'y') {
+            return true;
+        }
+		return false;
 	}
 }
