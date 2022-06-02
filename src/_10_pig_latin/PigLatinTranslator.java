@@ -41,15 +41,27 @@ public class PigLatinTranslator implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		JButton buttonPressed = (JButton) e.getSource();
 		if(buttonPressed == eng) {
-			translateToPig();
+			String input = english.getText();
+			String[] words = input.split(" ");
+			String translated = "";
+			for(String word : words) {
+				translated += translateToPig(word) +" ";
+				
+			}
+			piglatin.setText(translated);
 		}
 		else if(buttonPressed == pig) {
-			System.out.println("op");
+			String input = piglatin.getText();
+			String[] words = input.split(" ");
+			String translated = "";
+			for(String word : words) {
+				translated += translateToEng(word) +" ";
+			}
+			english.setText(translated);
 		}
 		
 	}
-	public void translateToPig() {
-		String word = english.getText();
+	public String translateToPig(String word) {
 		for (int i = 0; i<word.length(); i++) {
 			ch= word.charAt(i);
 			if (isVowel(ch)) {
@@ -58,23 +70,38 @@ public class PigLatinTranslator implements ActionListener {
 			}
 		}
 		if(pos == 0) {
-			piglatin.setText(word +"yay");
+			return(word +"yay");
 		}
 		else {
 			String a = word.substring(pos); 
             String b = word.substring(0, pos); 
-            piglatin.setText(a+"-"+b+"ay");
+            return(a+"-"+b+"ay");
         }
     }
 
-	public void translateToEng() {
-		String word = piglatin.getText();
+	public String translateToEng(String word) {
+		String dash = "-";
+		int pos = 0;
+		for(int i = 0; i<word.length(); i++) {
+
+			if (word.charAt(i) == '-') {
+				pos = i;
+			}
+			
+		}
 		
-	}
+		String beginWord = word.substring(0, pos);
+		String endWord = word.substring(pos);
+		char letter = word.charAt(pos+1);
+			
+		return (beginWord);
+		}
+
+		
 	
 	
 	private boolean isVowel(char character) {
-		if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' || ch == 'y') {
+		if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' ) {
             return true;
         }
 		return false;
