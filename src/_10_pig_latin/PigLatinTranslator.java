@@ -80,7 +80,6 @@ public class PigLatinTranslator implements ActionListener {
     }
 
 	public String translateToEng(String word) {
-		String dash = "-";
 		int pos = 0;
 		for(int i = 0; i<word.length(); i++) {
 
@@ -93,8 +92,16 @@ public class PigLatinTranslator implements ActionListener {
 		String beginWord = word.substring(0, pos);
 		String endWord = word.substring(pos);
 		char letter = word.charAt(pos+1);
+		char second = word.charAt(pos +2);
+		if (isVowel(word.charAt(pos+2))) {
+			word = letter + beginWord;
+		}
+		else {
+			word = letter + second + beginWord;
+		}
+		return (word);
 			
-		return (beginWord);
+		
 		}
 
 		
